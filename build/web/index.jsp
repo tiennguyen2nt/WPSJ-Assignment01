@@ -1,13 +1,11 @@
 <%-- 
-    Document   : resultSearch
-    Created on : Mar 10, 2017, 3:36:46 PM
+    Document   : index
+    Created on : Mar 7, 2017, 5:33:25 PM
     Author     : Tien Nguyen
 --%>
 
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -41,19 +39,17 @@
                     <a type="button" href="" class="btn btn-primary">Đăng xuất</a>
                 </div>
             </div>
-            <jsp:useBean id="book" class="edu.ass.model.ViewBookBean" scope="session"/>
+            <jsp:useBean id="book" class="edu.ass.model.ViewBookBean" />
 
 
             <div class="panel panel-primary">
-                <div class="panel-heading"> Kết quả tìm kiếm</div>
+                <div class="panel-heading"> Tất cả sách</div>
                 <div class="panel-body">
                     <c:forEach var="b" items="${book.list}">
                         <div class="book" >
-                           
                                 <div class="thumbnail">
-                                  
                                     <div class="caption">
-                                        <h3>${b.name} <span style="color: #555; font-size: 13px">${b.code}</span></h3>
+                                        <h3>${b.name}</h3>
                                         <p>Tác giả: ${b.author}</p>
                                         <p>Số lượng: ${b.quantity}</p>
                                         <c:if test="${b.status == true}">
@@ -66,18 +62,10 @@
                                         </c:if>
                                     </div>
                                 </div>
-                           
                         </div>
                     </c:forEach>
-                    <div style="clear: both;"></div>
-                    
                 </div>
-               
             </div>
-            <center>
-                  <a href="index.jsp" style="text-align: center;" >Trang chủ</a>
-            </center>
-           
         </div>
 
     </body>

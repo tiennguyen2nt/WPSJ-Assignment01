@@ -1,0 +1,25 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 10, 2017, 3:06:43 PM
+    Author     : Tien Nguyen
+*/
+div#wrapper {
+    width: 1000px;
+    margin: 20px auto;
+    
+}
+div.book{
+    float: left;
+    width: 300px;
+    margin: 10px;
+}
+.login-panel {
+    margin-top: 25%;
+}
+.error {
+    color: red;
+}

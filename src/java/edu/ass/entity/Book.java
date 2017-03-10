@@ -10,6 +10,7 @@ package edu.ass.entity;
  * @author Tien Nguyen
  */
 public class Book {
+
     private int id;
     private String name;
     private String author;
@@ -17,14 +18,24 @@ public class Book {
     private String detail;
     private int quantity;
     private boolean status;
+    private String code;
 
-    public Book(int id, String name, String author, String type, String detail, int quantity) {
+    public Book(int id, String name, String author, String type, String detail, int quantity, String code) {
         this.id = id;
         this.name = name;
         this.author = author;
         this.type = type;
         this.detail = detail;
         this.quantity = quantity;
+        this.code = code;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public Book() {
@@ -86,5 +97,4 @@ public class Book {
         this.status = status;
     }
 
-    
 }
