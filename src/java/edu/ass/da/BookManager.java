@@ -18,7 +18,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author LongChimNgan
+ * @author Tien Nguyen
  */
 public class BookManager {
 
@@ -86,8 +86,6 @@ public class BookManager {
 
     }
 
-    public static void main(String[] args) {
-        System.out.println(searchByName("D").get(0).getName());
-    }
+   
 
 }
