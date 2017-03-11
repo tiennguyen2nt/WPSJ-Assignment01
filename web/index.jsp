@@ -49,7 +49,7 @@
                         <div class="book" >
                                 <div class="thumbnail">
                                     <div class="caption">
-                                        <h3>${b.name}</h3>
+                                        <h3>${b.name} - <span style="color: #555; font-size: 13px">${b.code}</span></h3>
                                         <p>Tác giả: ${b.author}</p>
                                         <p>Số lượng: ${b.quantity}</p>
                                         <c:if test="${b.status == true}">
