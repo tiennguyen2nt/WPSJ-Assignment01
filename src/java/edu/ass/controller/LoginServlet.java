@@ -77,9 +77,9 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession(false);
         String user = request.getParameter("email");
         String pass = request.getParameter("password");
-
-        if (StaffManager.Login(user, pass)) {
-            session.setAttribute("user", user);
+        Staff s = StaffManager.Login(user, pass);
+        if (s!= null) {
+            session.setAttribute("userId", s.getId());     
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
             rd.forward(request, response);
         } else {

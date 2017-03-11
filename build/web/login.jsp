@@ -29,9 +29,8 @@
 </head>
 
 <body>
- <c:if test="${sessionScope.user!=null}">
-            <jsp:forward page="index.jsp" />
-        </c:if>
+  
+           
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
@@ -68,7 +67,7 @@
 
    
 
-   
+  
 
 </body>
 

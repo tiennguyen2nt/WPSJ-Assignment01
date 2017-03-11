@@ -5,8 +5,16 @@
  */
 package edu.ass.controller;
 
+import edu.ass.da.BookManager;
+import edu.ass.da.OrderManager;
+import edu.ass.entity.Order;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
+
+
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +43,7 @@ public class BorrowServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet BorrowServlet</title>");            
+            out.println("<title>Servlet BorrowServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet BorrowServlet at " + request.getContextPath() + "</h1>");
@@ -56,7 +64,10 @@ public class BorrowServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String idbook = request.getParameter("book");
+        request.setAttribute("book", BookManager.getById(Integer.parseInt(idbook)));
+        RequestDispatcher rd = request.getRequestDispatcher("borrow.jsp");
+        rd.forward(request, response);
     }
 
     /**
@@ -70,7 +81,33 @@ public class BorrowServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        Order o = new Order();
+        o.setName(request.getParameter("name"));
+        String a = request.getParameter("idStaff");
+        o.setIdStaff(Integer.parseInt(a));
+        String b = request.getParameter("idbook");
+        o.setIdbook(Integer.parseInt(b));
+        o.setDay(Integer.parseInt(request.getParameter("daynumber")));
+        if (request.getParameter("note") != null) {
+            o.setNote(request.getParameter("note"));
+        }
+        Date date = new Date();
+        
+        o.setBorrowDate(new java.sql.Date(date.getTime()));
+        
+        System.out.println("");
+        o.setStatus(true);
+
+        if (OrderManager.AddNew(o)) {
+            request.setAttribute("stt", "ok");
+        } else {
+            request.setAttribute("stt", "bad");
+        }
+
+        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+        rd.forward(request, response);
+
     }
 
     /**

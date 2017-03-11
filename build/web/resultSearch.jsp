@@ -18,7 +18,7 @@
         <title>Home</title>
     </head>
     <body>
-        <c:if test="${sessionScope.user==null}">
+        <c:if test="${sessionScope.userId==null}">
             <jsp:forward page="login.jsp" />
         </c:if>
 

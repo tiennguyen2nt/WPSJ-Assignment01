@@ -43,6 +43,27 @@ public class BookManager {
 
     }
 
+    public static Book getById(int id) {
+
+        try {
+            Connection connection = new Db().getConnection();
+            PreparedStatement statement
+                    = connection.prepareStatement("select * from Book where id=?");
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+            Book book = null;
+            if (rs.next()) {
+                book = new Book(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7));
+
+            }
+            return book;
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(BookManager.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+
+    }
+
     public static List<Book> searchByName(String name) {
         try {
             Connection connection = new Db().getConnection();
@@ -54,7 +75,7 @@ public class BookManager {
             ResultSet rs = statement.executeQuery();
             List<Book> books = new LinkedList<>();
             while (rs.next()) {
-                Book book = new Book(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6),rs.getString(7));
+                Book book = new Book(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getInt(6), rs.getString(7));
                 books.add(book);
             }
             return books;
@@ -64,6 +85,7 @@ public class BookManager {
         }
 
     }
+
     public static void main(String[] args) {
         System.out.println(searchByName("D").get(0).getName());
     }

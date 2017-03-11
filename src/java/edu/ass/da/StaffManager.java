@@ -5,10 +5,14 @@
  */
 package edu.ass.da;
 
+import edu.ass.entity.Staff;
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.Instant;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -19,7 +23,7 @@ import java.util.logging.Logger;
  */
 public class StaffManager {
 
-    public static boolean Login(String user,String pass) {
+    public static Staff Login(String user, String pass) {
 
         try {
             Connection connection = new Db().getConnection();
@@ -28,16 +32,18 @@ public class StaffManager {
             statement.setString(1, user);
             statement.setString(2, pass);
             ResultSet rs = statement.executeQuery();
-           
+            Staff s = null;
             if (rs.next()) {
-                return true;
+                s = new Staff(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4));
             }
-           
+            return s;
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(BookManager.class.getName()).log(Level.SEVERE, null, ex);
-           return false;
+            return null;
         }
-        return false;
+
     }
-    
+
+    public static void main(String[] args) {
+    }
 }

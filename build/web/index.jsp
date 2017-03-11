@@ -16,7 +16,7 @@
         <title>Home</title>
     </head>
     <body>
-        <c:if test="${sessionScope.user==null}">
+        <c:if test="${sessionScope.userId==null}">
             <jsp:forward page="login.jsp" />
         </c:if>
 
@@ -58,7 +58,7 @@
                                         </c:if>
                                         <c:if test="${b.status == false}">
                                             <p>Trạng thái: <span>Còn sách</span></p>
-                                            <p><a href="#" class="btn btn-primary" role="button">Mượn sách</a></p>
+                                            <p><a href="BorrowServlet?book=${b.id}" class="btn btn-primary" role="button">Mượn sách</a></p>
                                         </c:if>
                                     </div>
                                 </div>
